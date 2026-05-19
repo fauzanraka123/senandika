@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Panel - Senandika</title>
+    <title>Admin Panel - RupaKata</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-[#1A1A1A] text-white flex flex-col h-full shadow-xl">
         <div class="p-6 border-b border-stone-800">
-            <a href="/" class="text-2xl font-serif text-[#C9A27C] tracking-tight hover:opacity-80 transition-opacity">Senandika</a>
+            <a href="/" class="text-2xl font-serif text-[#C9A27C] tracking-tight hover:opacity-80 transition-opacity">RupaKata</a>
             <p class="text-[10px] text-stone-500 uppercase tracking-widest mt-1 font-semibold">Administrator Panel</p>
         </div>
         

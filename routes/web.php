@@ -65,6 +65,11 @@ Route::middleware(['auth'])->group(function () {
         'update' => 'dashboard.poems.update',
         'destroy' => 'dashboard.poems.destroy',
     ]);
+    
+    // Poem Interactions
+    Route::post('/poems/{poem}/like', [\App\Http\Controllers\PoemLikeController::class, 'toggle'])->name('poems.like');
+    Route::post('/poems/{poem}/comments', [\App\Http\Controllers\PoemCommentController::class, 'store'])->name('poems.comments.store');
+    Route::delete('/comments/{comment}', [\App\Http\Controllers\PoemCommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 // Admin Routes

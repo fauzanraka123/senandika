@@ -23,30 +23,22 @@
             <div class="max-w-xl mx-auto space-y-8 pb-20">
                 <!-- Title -->
                 <div>
-                    <input type="text" name="title" x-model="title" placeholder="Judul Puisi" 
-                        class="w-full text-4xl font-serif bg-transparent border-none focus:ring-0 placeholder-stone-300 dark:placeholder-stone-700 text-[#1A1A1A] dark:text-[#EAEAEA] p-0"
+                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Judul Puisi</label>
+                    <input type="text" name="title" x-model="title" placeholder="Tuliskan judul puisi Anda..." 
+                        class="w-full bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800 rounded-xl text-lg font-serif transition-colors focus:border-[#8B5E3C] dark:focus:border-[#C9A27C] focus:ring-0 placeholder-stone-400 px-4 py-3"
                         required>
-                    <div class="h-px bg-stone-100 dark:bg-stone-800 mt-4 w-24"></div>
                 </div>
 
                 <!-- Meta Row -->
-                <div class="grid grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Kategori</label>
-                        <select name="category_id" x-model="category" 
-                            class="w-full bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800 rounded-xl text-sm transition-colors focus:border-[#8B5E3C] dark:focus:border-[#C9A27C] focus:ring-0">
-                            <option value="">Pilih Kategori</option>
-                            @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Tag (Pisahkan dengan koma)</label>
-                        <input type="text" name="tags" placeholder="cinta, alam, kehidupan..." 
-                            value="{{ $poem->tags->pluck('name')->implode(', ') }}"
-                            class="w-full bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800 rounded-xl text-sm transition-colors focus:border-[#8B5E3C] dark:focus:border-[#C9A27C] focus:ring-0 placeholder-stone-400">
-                    </div>
+                <div class="w-full">
+                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Tema / Kategori</label>
+                    <select name="category_id" x-model="category" 
+                        class="w-full bg-stone-50 dark:bg-stone-900 border-stone-200 dark:border-stone-800 rounded-xl text-sm transition-colors focus:border-[#8B5E3C] dark:focus:border-[#C9A27C] focus:ring-0 px-4 py-3">
+                        <option value="">Pilih Tema</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <!-- Excerpt -->
@@ -57,27 +49,34 @@
                 </div>
 
                 <!-- Content Area -->
-                <div class="relative min-h-[400px]">
-                    <textarea name="content" x-model="content" placeholder="Biarkan kata-kata mengalir..." 
-                        class="w-full h-full min-h-[400px] bg-transparent border-none focus:ring-0 font-serif text-lg leading-relaxed text-stone-800 dark:text-stone-300 p-0 resize-none placeholder-stone-300 dark:placeholder-stone-700 custom-scrollbar"
-                        required></textarea>
-                </div>
-
-                <!-- Cover Image -->
-                <div x-data="{ filename: '' }">
-                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Sampul Puisi</label>
-                    <div class="flex items-center gap-4">
-                        <label class="cursor-pointer bg-stone-100 dark:bg-stone-900 px-4 py-2 rounded-xl text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 transition-all border border-stone-200 dark:border-stone-800">
-                            <span>Ubah Gambar</span>
-                            <input type="file" name="cover_image" class="hidden" @change="filename = $event.target.files[0].name">
-                        </label>
-                        <span class="text-xs text-stone-400 truncate max-w-xs" x-text="filename || 'Kosongkan untuk tetap menggunakan yang lama'"></span>
+                <div class="relative min-h-[400px] flex flex-col" x-init="
+                    const quill = new Quill($refs.quillEditor, {
+                        theme: 'snow',
+                        placeholder: 'Biarkan kata-kata mengalir...',
+                        modules: {
+                            toolbar: [
+                                ['bold', 'italic', 'underline'],
+                                ['blockquote'],
+                                [{ 'align': [] }],
+                                ['clean']
+                            ]
+                        }
+                    });
+                    
+                    if (content) {
+                        quill.root.innerHTML = content;
+                    }
+                    
+                    quill.on('text-change', () => {
+                        let html = quill.root.innerHTML;
+                        content = html === '<p><br></p>' ? '' : html;
+                    });
+                ">
+                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Isi Puisi</label>
+                    <input type="hidden" name="content" :value="content" required>
+                    <div class="flex-grow bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden transition-colors flex flex-col">
+                        <div x-ref="quillEditor" class="flex-grow font-serif text-lg leading-relaxed text-[#1A1A1A] dark:text-[#EAEAEA]"></div>
                     </div>
-                    @if($poem->cover_image)
-                        <div class="mt-4">
-                            <img src="{{ asset('storage/' . $poem->cover_image) }}" class="w-20 h-20 object-cover rounded-lg border border-stone-200 transition-all">
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -91,8 +90,14 @@
                     <div class="w-12 h-px bg-stone-300 dark:bg-stone-700 mx-auto"></div>
                 </div>
 
-                <div class="font-serif text-xl md:text-2xl leading-[2.2] text-stone-900 dark:text-[#D1D1D1] whitespace-pre-wrap text-center opacity-90 transition-all italic" 
-                    :class="!content && 'opacity-30'" x-text="content || 'Tinta menanti sentuhanmu...'">
+                <div class="font-serif text-xl md:text-2xl leading-[2.2] text-stone-900 dark:text-[#D1D1D1] text-center transition-all quill-content" 
+                    :class="!content && 'opacity-30'">
+                    <template x-if="content">
+                        <div x-html="content"></div>
+                    </template>
+                    <template x-if="!content">
+                        <p class="italic">Tinta menanti sentuhanmu...</p>
+                    </template>
                 </div>
             </div>
         </div>
@@ -120,8 +125,63 @@
 @endsection
 
 @push('scripts')
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <style>
+    /* Quill custom styling for RupaKata */
+    .ql-toolbar.ql-snow {
+        border: none !important;
+        border-bottom: 1px solid #e5e7eb !important;
+        font-family: ui-sans-serif, system-ui, sans-serif !important;
+        padding: 12px 16px !important;
+    }
+    .dark .ql-toolbar.ql-snow {
+        border-bottom-color: #27272a !important;
+    }
+    .ql-container.ql-snow {
+        border: none !important;
+        font-family: inherit !important;
+        font-size: inherit !important;
+    }
+    .ql-editor {
+        min-height: 300px;
+        padding: 20px !important;
+    }
+    .ql-editor.ql-blank::before {
+        color: #a8a29e;
+        font-style: italic;
+    }
+    .dark .ql-editor.ql-blank::before {
+        color: #52525b;
+    }
+    .dark .ql-snow .ql-stroke {
+        stroke: #a1a1aa;
+    }
+    .dark .ql-snow .ql-fill, .dark .ql-snow .ql-stroke.ql-fill {
+        fill: #a1a1aa;
+    }
+    .dark .ql-snow .ql-picker {
+        color: #a1a1aa;
+    }
+    
+    /* Quill content styles for preview */
+    .quill-content p {
+        margin-bottom: 1.5em;
+    }
+    .quill-content blockquote {
+        border-left: 4px solid #8B5E3C;
+        padding-left: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        font-style: italic;
+        color: #57534e;
+    }
+    .dark .quill-content blockquote {
+        border-left-color: #C9A27C;
+        color: #a8a29e;
+    }
+
     .custom-scrollbar::-webkit-scrollbar {
         width: 4px;
     }

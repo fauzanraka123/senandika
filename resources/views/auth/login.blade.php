@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Masuk - Senandika</title>
+    <title>Masuk - RupaKata</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
     
     <div class="w-full max-w-md p-8 bg-white rounded-2xl shadow-sm border border-stone-200">
         <div class="text-center mb-8">
-            <h1 class="text-4xl font-serif text-[#8B5E3C] mb-2 tracking-tight">Senandika</h1>
+            <h1 class="text-4xl font-serif text-[#8B5E3C] mb-2 tracking-tight">RupaKata</h1>
             <p class="text-stone-500 font-serif text-lg italic">Rumah Digital untuk Puisi.</p>
         </div>
 
@@ -38,7 +38,7 @@
         </a>
 
         <div class="mt-8 text-center text-sm text-stone-400">
-            Dengan melanjutkan, Anda menyetujui <a href="#" class="underline hover:text-stone-600">Ketentuan Layanan</a> dan <a href="#" class="underline hover:text-stone-600">Kebijakan Privasi</a> Senandika.
+            Dengan melanjutkan, Anda menyetujui <a href="#" class="underline hover:text-stone-600">Ketentuan Layanan</a> dan <a href="#" class="underline hover:text-stone-600">Kebijakan Privasi</a> RupaKata.
         </div>
     </div>
 

@@ -46,7 +46,6 @@ class PoemController extends Controller
             'excerpt' => 'nullable|string|max:500',
             'status' => 'required|in:draft,published',
             'cover_image' => 'nullable|image|max:2048',
-            'tags' => 'nullable|string',
         ]);
 
         $imagePath = null;
@@ -64,16 +63,6 @@ class PoemController extends Controller
             'cover_image' => $imagePath,
             'published_at' => $validated['status'] === 'published' ? now() : null,
         ]);
-
-        if ($request->tags) {
-            $tagNames = explode(',', $request->tags);
-            $tagIds = [];
-            foreach ($tagNames as $name) {
-                $tag = \App\Models\Tag::firstOrCreate(['name' => trim($name)], ['slug' => str($name)->slug()]);
-                $tagIds[] = $tag->id;
-            }
-            $poem->tags()->sync($tagIds);
-        }
 
         return redirect()->route('dashboard.poems.index')->with('success', 'Puisi berhasil dibuat.');
     }
@@ -110,7 +99,6 @@ class PoemController extends Controller
             'excerpt' => 'nullable|string|max:500',
             'status' => 'required|in:draft,published',
             'cover_image' => 'nullable|image|max:2048',
-            'tags' => 'nullable|string',
         ]);
 
         if ($request->hasFile('cover_image')) {
@@ -128,16 +116,6 @@ class PoemController extends Controller
             'status' => $validated['status'],
             'published_at' => ($poem->status !== 'published' && $validated['status'] === 'published') ? now() : $poem->published_at,
         ]);
-
-        if ($request->tags) {
-            $tagNames = explode(',', $request->tags);
-            $tagIds = [];
-            foreach ($tagNames as $name) {
-                $tag = \App\Models\Tag::firstOrCreate(['name' => trim($name)], ['slug' => str($name)->slug()]);
-                $tagIds[] = $tag->id;
-            }
-            $poem->tags()->sync($tagIds);
-        }
 
         return redirect()->route('dashboard.poems.index')->with('success', 'Puisi berhasil diperbarui.');
     }

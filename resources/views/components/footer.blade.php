@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="md:flex md:items-center md:justify-between">
             <div class="flex justify-center md:justify-start md:w-1/3">
-                <a href="/" class="text-3xl font-serif text-[#8B5E3C] dark:text-[#C9A27C] tracking-tight">Senandika</a>
+                <a href="/" class="text-3xl font-serif text-[#8B5E3C] dark:text-[#C9A27C] tracking-tight">RupaKata</a>
             </div>
             
             <div class="mt-8 md:mt-0 flex justify-center space-x-6 md:w-1/3">
@@ -22,7 +22,7 @@
             
             <div class="mt-8 md:mt-0 flex justify-center md:justify-end md:w-1/3">
                 <p class="text-center text-sm text-stone-500 dark:text-stone-400">
-                    &copy; {{ date('Y') }} Senandika. 
+                    &copy; {{ date('Y') }} RupaKata. 
                     <span class="block sm:inline mt-1 sm:mt-0">Sebuah Rumah Digital Untuk Puisi.</span>
                 </p>
             </div>
