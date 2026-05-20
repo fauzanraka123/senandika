@@ -226,7 +226,7 @@
 
                 <!-- Footer Compact -->
                 <div class="pt-12 text-center">
-                    <p class="text-[10px] text-stone-400 font-bold uppercase tracking-widest">&copy; 2024 RupaKata Poetry Platform</p>
+                    <p class="text-[10px] text-stone-400 font-bold uppercase tracking-widest">&copy; 2024 RuangKata Poetry Platform</p>
                 </div>
 
             </aside>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Para Penyair - RupaKata')
+@section('title', 'Para Penyair - RuangKata')
 
 @section('content')
     <div class="bg-[#FDFCFB] dark:bg-gray-950 border-b border-gray-100 dark:border-gray-900 py-16 transition-colors duration-300">

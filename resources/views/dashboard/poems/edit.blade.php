@@ -129,7 +129,7 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <style>
-    /* Quill custom styling for RupaKata */
+    /* Quill custom styling for RuangKata */
     .ql-toolbar.ql-snow {
         border: none !important;
         border-bottom: 1px solid #e5e7eb !important;

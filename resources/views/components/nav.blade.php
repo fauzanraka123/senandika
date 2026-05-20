@@ -4,7 +4,7 @@
             <!-- Logo -->
             <div class="flex-shrink-0 flex items-center">
                 <a href="{{ route('home') }}" class="font-serif text-xl font-bold tracking-wide text-[#1A1A1A] dark:text-[#EAEAEA] transition-opacity hover:opacity-80">
-                    RupaKata
+                    RuangKata
                 </a>
             </div>
 

@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@layer utilities {
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 10px;
+    }
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1e293b;
+    }
+}
+
+/* Quill custom styling for RuangKata */
+.ql-toolbar.ql-snow {
+    border: none !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    font-family: ui-sans-serif, system-ui, sans-serif !important;
+    padding: 12px 16px !important;
+}
+.dark .ql-toolbar.ql-snow {
+    border-bottom-color: #27272a !important;
+}
+.ql-container.ql-snow {
+    border: none !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+}
+.ql-editor {
+    min-height: 300px;
+    padding: 20px !important;
+}
+.ql-editor.ql-blank::before {
+    color: #a8a29e;
+    font-style: italic;
+}
+.dark .ql-editor.ql-blank::before {
+    color: #52525b;
+}
+.dark .ql-snow .ql-stroke {
+    stroke: #a1a1aa;
+}
+.dark .ql-snow .ql-fill, .dark .ql-snow .ql-stroke.ql-fill {
+    fill: #a1a1aa;
+}
+.dark .ql-snow .ql-picker {
+    color: #a1a1aa;
+}
+
+/* Quill content styles for preview */
+.quill-content p {
+    margin-bottom: 1.5em;
+}
+.quill-content blockquote {
+    border-left: 4px solid #8B5E3C;
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    color: #57534e;
+}
+.dark .quill-content blockquote {
+    border-left-color: #C9A27C;
+    color: #a8a29e;
+}
+
+[x-cloak] { display: none !important; }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Beranda') - RupaKata</title>
+    <title>@yield('title', 'Beranda') - RuangKata</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-64 bg-white dark:bg-[#151515] border-r border-stone-200 dark:border-stone-800 flex flex-col h-full z-40 transition-transform duration-300 transform -translate-x-full md:translate-x-0 transition-colors duration-300">
         <div class="p-6 border-b border-stone-100 dark:border-stone-800">
-            <a href="/" class="text-2xl font-serif text-[#8B5E3C] dark:text-[#C9A27C] tracking-tight hover:opacity-80 transition-opacity">RupaKata</a>
+            <a href="/" class="text-2xl font-serif text-[#8B5E3C] dark:text-[#C9A27C] tracking-tight hover:opacity-80 transition-opacity">RuangKata</a>
             <p class="text-[10px] text-stone-400 uppercase tracking-[0.2em] mt-1 font-bold">Ruang Penulis</p>
         </div>
         

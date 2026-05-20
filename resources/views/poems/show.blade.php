@@ -411,7 +411,7 @@
                     if (navigator.share) {
                         navigator.share({
                             title: '{{ addslashes($poem->title) }} oleh {{ addslashes($poem->user->name) }}',
-                            text: 'Baca puisi "{{ addslashes($poem->title) }}" di RupaKata.',
+                            text: 'Baca puisi "{{ addslashes($poem->title) }}" di RuangKata.',
                             url: window.location.href
                         }).catch(console.error);
                     } else {
