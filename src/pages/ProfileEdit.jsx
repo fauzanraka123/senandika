@@ -59,7 +59,7 @@ export default function ProfileEdit() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Fauzan Raka..."
+                placeholder="Masukkan Nama Lengkap Anda"
                 className="w-full bg-stone-50 dark:bg-[#151515] border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B5E3C] dark:focus:border-[#C9A27C] text-[#1A1A1A] dark:text-[#EAEAEA]"
                 required
               />
@@ -71,7 +71,7 @@ export default function ProfileEdit() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="fauzan@ruangkata.com"
+                placeholder="Masukkan Alamat Email Anda"
                 className="w-full bg-stone-50 dark:bg-[#151515] border border-stone-200 dark:border-stone-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#8B5E3C] dark:focus:border-[#C9A27C] text-[#1A1A1A] dark:text-[#EAEAEA]"
                 disabled
               />
