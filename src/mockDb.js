@@ -266,13 +266,13 @@ export function deletePoem(poemId) {
 
 export function registerUser(name, email, password) {
   const users = getUsers();
-  const exists = users.find(u => u.email === email);
+  const exists = users.find(u => u.email.toLowerCase() === email.trim().toLowerCase());
   if (exists) return null;
   
   const newUser = {
     id: Date.now(),
-    name,
-    email,
+    name: name.trim(),
+    email: email.trim().toLowerCase(),
     avatar: null,
     bio: "",
     role: "peserta"
@@ -286,13 +286,13 @@ export function registerUser(name, email, password) {
 
 export function loginUser(email, password) {
   const users = getUsers();
-  const user = users.find(u => u.email === email);
+  const user = users.find(u => u.email.toLowerCase() === email.trim().toLowerCase());
   if (user) {
     setCurrentUser(user);
     return user;
   }
   // If not exists, auto-create a mock user to simplify login flow!
   const name = email.split('@')[0].replace('.', ' ');
-  const newUser = registerUser(name, email, password);
+  const newUser = registerUser(name, email, password || 'password');
   return newUser;
 }
