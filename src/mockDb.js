@@ -40,4 +40,18 @@ export function initDb() {
     localStorage.setItem("rk_comments", JSON.stringify(initialComments));
   }
 }
+
+// Current user helpers
+export function getCurrentUser() {
+  const user = localStorage.getItem("rk_current_user");
+  return user ? JSON.parse(user) : null;
+}
+
+export function setCurrentUser(user) {
+  if (user) {
+    localStorage.setItem("rk_current_user", JSON.stringify(user));
+  } else {
+    localStorage.removeItem("rk_current_user");
+  }
+}
 ```
